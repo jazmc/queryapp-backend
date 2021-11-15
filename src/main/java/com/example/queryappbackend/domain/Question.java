@@ -7,7 +7,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.example.queryappbackend.domain.Group;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -20,24 +19,24 @@ public class Question {
 	private String description; // question text
 	private String type; // radio, checkbox, text etc.
 	private String[] answers; // array of answers
-	private String[] right; // array of right answers
+	private String[] rightans; // array of right answers
 	
 	// group, "questionnaire"
 	@ManyToOne
-	@JoinColumn(name = "groupid")
+	@JoinColumn(name = "qgroupid")
 	@JsonManagedReference
-	private Group group;
+	private Questiongroup questiongroup;
 
 	// constructors
 	public Question() {}
 	
-	public Question(String description, String type, String[] answers, String[] right, Group group) {
+	public Question(String description, String type, String[] answers, String[] rightans, Questiongroup questiongroup) {
 		super();
 		this.description = description;
 		this.type = type;
 		this.answers = answers;
-		this.right = right;
-		this.group = group;
+		this.rightans = rightans;
+		this.questiongroup = questiongroup;
 	}
 	
 	// getters & setters below
@@ -66,12 +65,12 @@ public class Question {
 		this.type = type;
 	}
 
-	public Group getGroup() {
-		return group;
+	public Questiongroup getGroup() {
+		return questiongroup;
 	}
 
-	public void setGroup(Group group) {
-		this.group = group;
+	public void setGroup(Questiongroup questiongroup) {
+		this.questiongroup = questiongroup;
 	}
 
 	public String[] getAnswers() {
@@ -83,10 +82,10 @@ public class Question {
 	}
 
 	public String[] getRight() {
-		return right;
+		return rightans;
 	}
 
-	public void setRight(String[] right) {
-		this.right = right;
+	public void setRight(String[] rightans) {
+		this.rightans = rightans;
 	}
 }

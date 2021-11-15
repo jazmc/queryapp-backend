@@ -12,31 +12,31 @@ import javax.persistence.OneToMany;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Group {
+public class Questiongroup {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long groupid;
+	private Long qgroupid;
 	private String title;
 	
 	@JsonIgnore
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "group")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "questiongroup")
 	private List<Question> questions;
 
 	// constructors
-	public Group() {}
+	public Questiongroup() {}
 	
-	public Group(String title) {
+	public Questiongroup(String title) {
 		super();
 		this.title = title;
 	}
 	
 	// getters & setters
-	public Long getGroupid() {
-		return groupid;
+	public Long getQuestiongroupid() {
+		return qgroupid;
 	}
 
-	public void setGroupid(Long groupid) {
-		this.groupid = groupid;
+	public void setQuestiongroupid(Long qgroupid) {
+		this.qgroupid = qgroupid;
 	}
 
 	public String getTitle() {

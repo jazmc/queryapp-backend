@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.example.queryappbackend.domain.Group;
-import com.example.queryappbackend.domain.GroupRepository;
+import com.example.queryappbackend.domain.Questiongroup;
+import com.example.queryappbackend.domain.QuestiongroupRepository;
 import com.example.queryappbackend.domain.Question;
 import com.example.queryappbackend.domain.QuestionRepository;
 
@@ -19,7 +19,7 @@ public class QuestionController {
 	@Autowired
 	private QuestionRepository repository;
 	@Autowired
-	private GroupRepository grep;
+	private QuestiongroupRepository grep;
 	
 	// all questions
 	@GetMapping("/questions")
@@ -35,13 +35,13 @@ public class QuestionController {
 	
 	// all questionnaires = groups
 	@GetMapping("/groups")
-	public @ResponseBody List<Group> groupsREST() {
-		return (List<Group>) grep.findAll();
+	public @ResponseBody List<Questiongroup> groupsREST() {
+		return (List<Questiongroup>) grep.findAll();
 	}
 	
 	// questionnaire = group by id
 	@GetMapping("/groups/{id}")
-	public @ResponseBody Optional<Group> findGroupREST(@PathVariable("id") Long id) {
+	public @ResponseBody Optional<Questiongroup> findGroupREST(@PathVariable("id") Long id) {
 		return grep.findById(id);
 	}
 }

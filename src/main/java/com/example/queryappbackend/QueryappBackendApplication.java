@@ -5,8 +5,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import com.example.queryappbackend.domain.Group;
-import com.example.queryappbackend.domain.GroupRepository;
+import com.example.queryappbackend.domain.Questiongroup;
+import com.example.queryappbackend.domain.QuestiongroupRepository;
 import com.example.queryappbackend.domain.Question;
 import com.example.queryappbackend.domain.QuestionRepository;
 
@@ -18,11 +18,11 @@ public class QueryappBackendApplication {
 	}
 	
 	@Bean
-	public CommandLineRunner demo(QuestionRepository repository, GroupRepository grep) {
+	public CommandLineRunner demo(QuestionRepository repository, QuestiongroupRepository grep) {
 		return (args) -> {
 			// create example questionnaires
-			Group g1 = new Group("Group 1 title");
-			Group g2 = new Group("Group 2 title");
+			Questiongroup g1 = new Questiongroup("Group 1 title");
+			Questiongroup g2 = new Questiongroup("Group 2 title");
 			
 			grep.save(g1);
 			grep.save(g2);
