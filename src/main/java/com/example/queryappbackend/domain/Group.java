@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import com.example.queryappbackend.domain.Question;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -23,6 +22,15 @@ public class Group {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "group")
 	private List<Question> questions;
 
+	// constructors
+	public Group() {}
+	
+	public Group(String title) {
+		super();
+		this.title = title;
+	}
+	
+	// getters & setters
 	public Long getGroupid() {
 		return groupid;
 	}

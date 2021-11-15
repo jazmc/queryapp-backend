@@ -27,6 +27,20 @@ public class Question {
 	@JoinColumn(name = "groupid")
 	@JsonManagedReference
 	private Group group;
+
+	// constructors
+	public Question() {}
+	
+	public Question(String description, String type, String[] answers, String[] right, Group group) {
+		super();
+		this.description = description;
+		this.type = type;
+		this.answers = answers;
+		this.right = right;
+		this.group = group;
+	}
+	
+	// getters & setters below
 	
 	public Long getId() {
 		return id;
