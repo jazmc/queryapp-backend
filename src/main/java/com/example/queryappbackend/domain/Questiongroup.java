@@ -18,7 +18,6 @@ public class Questiongroup {
 	private Long qgroupid;
 	private String title;
 	
-	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "questiongroup")
 	private List<Question> questions;
 
