@@ -44,4 +44,15 @@ public class QuestionController {
 	public @ResponseBody Optional<Questiongroup> findGroupREST(@PathVariable("id") Long id) {
 		return grep.findById(id);
 	}
+	
+	// questions of a questionnaire by id
+	@GetMapping("/groups/{id}/questions")
+	public @ResponseBody List<Question> findQuestionsOfAGroupREST(@PathVariable("id") Long id) {
+		
+		Optional<Questiongroup> qg = grep.findById(id);
+		Questiongroup group = qg.get();
+		
+		return (List<Question>) group.getQuestions();
+		
+	}
 }
