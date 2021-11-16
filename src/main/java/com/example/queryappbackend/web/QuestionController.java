@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.queryappbackend.domain.Questiongroup;
 import com.example.queryappbackend.domain.QuestiongroupRepository;
+import com.example.queryappbackend.domain.Answer;
+import com.example.queryappbackend.domain.AnswerRepository;
 import com.example.queryappbackend.domain.Question;
 import com.example.queryappbackend.domain.QuestionRepository;
 
@@ -22,6 +24,8 @@ public class QuestionController {
 	private QuestionRepository repository;
 	@Autowired
 	private QuestiongroupRepository grep;
+	@Autowired
+	private AnswerRepository arep;
 	
 	/*
 	 * ADD METHOD:
@@ -33,6 +37,19 @@ public class QuestionController {
 		Questiongroup newGroup = new Questiongroup(title);
 
 		return grep.save(newGroup);
+	}
+	
+	/*
+	 * POST ANSWER TO QUESTIONNAIRE:
+	 */
+	@CrossOrigin
+	@PostMapping("/groups/{id}/answers")
+	public @ResponseBody Answer viewAnswersREST(@PathVariable("id") Long id, String nickname, String answers) {
+		Optional<Questiongroup> desiredQg = grep.findById(id);
+		Questiongroup qg = desiredQg.get();
+		Answer newAns = new Answer(nickname, answers, qg);
+		
+		return arep.save(newAns);
 	}
 	
 	
@@ -72,11 +89,17 @@ public class QuestionController {
 	@CrossOrigin
 	@GetMapping("/groups/{id}/questions")
 	public @ResponseBody List<Question> findQuestionsOfAGroupREST(@PathVariable("id") Long id) {
-		
 		Optional<Questiongroup> qg = grep.findById(id);
 		Questiongroup group = qg.get();
-		
 		return (List<Question>) group.getQuestions();
-		
+	}
+	
+	// answers of a questionnaire by id
+	@CrossOrigin
+	@GetMapping("/groups/{id}/answers")
+	public @ResponseBody List<Answer> findAnswersOfAGroupREST(@PathVariable("id") Long id) {
+		Optional<Questiongroup> qg = grep.findById(id);
+		Questiongroup group = qg.get();
+		return (List<Answer>) group.getAnswers();
 	}
 }

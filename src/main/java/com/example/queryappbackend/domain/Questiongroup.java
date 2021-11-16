@@ -21,6 +21,10 @@ public class Questiongroup {
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "questiongroup")
 	private List<Question> questions;
+	
+	@JsonIgnore
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "questiongroup")
+	private List<Answer> answers;
 
 	// constructors
 	public Questiongroup() {}
@@ -53,6 +57,22 @@ public class Questiongroup {
 
 	public void setQuestions(List<Question> questions) {
 		this.questions = questions;
+	}
+
+	public Long getQgroupid() {
+		return qgroupid;
+	}
+
+	public void setQgroupid(Long qgroupid) {
+		this.qgroupid = qgroupid;
+	}
+
+	public List<Answer> getAnswers() {
+		return answers;
+	}
+
+	public void setAnswers(List<Answer> answers) {
+		this.answers = answers;
 	}
 	
 }
