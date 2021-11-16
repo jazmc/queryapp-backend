@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.queryappbackend.domain.Questiongroup;
@@ -21,6 +22,23 @@ public class QuestionController {
 	private QuestionRepository repository;
 	@Autowired
 	private QuestiongroupRepository grep;
+	
+	/*
+	 * ADD METHOD:
+	 */
+	@CrossOrigin
+	@PostMapping("/groups")
+	public @ResponseBody Questiongroup addGroupREST(String title) {
+		
+		Questiongroup newGroup = new Questiongroup(title);
+
+		return grep.save(newGroup);
+	}
+	
+	
+	/*
+	 * METHODS FOR FETCHING:
+	 */
 	
 	// all questions
 	@CrossOrigin
