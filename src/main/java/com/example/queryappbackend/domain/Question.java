@@ -19,7 +19,6 @@ public class Question {
 	private String description; // question text
 	private String type; // radio, checkbox, text etc.
 	private String[] answers; // array of answers
-	private String[] rightans; // array of right answers
 	
 	// group, "questionnaire"
 	@ManyToOne
@@ -30,12 +29,11 @@ public class Question {
 	// constructors
 	public Question() {}
 	
-	public Question(String description, String type, String[] answers, String[] rightans, Questiongroup questiongroup) {
+	public Question(String description, String type, String[] answers, Questiongroup questiongroup) {
 		super();
 		this.description = description;
 		this.type = type;
 		this.answers = answers;
-		this.rightans = rightans;
 		this.questiongroup = questiongroup;
 	}
 	
@@ -79,13 +77,5 @@ public class Question {
 
 	public void setAnswers(String[] answers) {
 		this.answers = answers;
-	}
-
-	public String[] getRight() {
-		return rightans;
-	}
-
-	public void setRight(String[] rightans) {
-		this.rightans = rightans;
 	}
 }
