@@ -37,11 +37,11 @@ public class Answer {
 	}
 
 	public Long getId() {
-		return id;
+		return answerid;
 	}
 	
 	public void setId(Long id) {
-		this.id = id;
+		this.answerid = id;
 	}
 
 	public LocalDateTime getTimestamp() {
