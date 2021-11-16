@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,30 +23,35 @@ public class QuestionController {
 	private QuestiongroupRepository grep;
 	
 	// all questions
+	@CrossOrigin
 	@GetMapping("/questions")
 	public @ResponseBody List<Question> questionsREST() {
 		return (List<Question>) repository.findAll();
 	}
 	
 	// question by id
+	@CrossOrigin
 	@GetMapping("/questions/{id}")
 	public @ResponseBody Optional<Question> findQuestionREST(@PathVariable("id") Long id) {
 		return repository.findById(id);
 	}
 	
 	// all questionnaires = groups
+	@CrossOrigin
 	@GetMapping("/groups")
 	public @ResponseBody List<Questiongroup> groupsREST() {
 		return (List<Questiongroup>) grep.findAll();
 	}
 	
 	// questionnaire = group by id
+	@CrossOrigin
 	@GetMapping("/groups/{id}")
 	public @ResponseBody Optional<Questiongroup> findGroupREST(@PathVariable("id") Long id) {
 		return grep.findById(id);
 	}
 	
 	// questions of a questionnaire by id
+	@CrossOrigin
 	@GetMapping("/groups/{id}/questions")
 	public @ResponseBody List<Question> findQuestionsOfAGroupREST(@PathVariable("id") Long id) {
 		
