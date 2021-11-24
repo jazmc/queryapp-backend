@@ -35,6 +35,14 @@ public class Answer {
 		this.questiongroup = questiongroup;
 		this.timestamp = LocalDateTime.now();
 	}
+	
+	public Answer(String nickname, String answers) {
+		super();
+		this.nickname = nickname;
+		this.answers = answers;
+		this.questiongroup = null;
+		this.timestamp = LocalDateTime.now();
+	}
 
 	public Long getId() {
 		return answerid;
