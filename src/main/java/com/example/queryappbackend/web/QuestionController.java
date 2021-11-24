@@ -48,7 +48,7 @@ public class QuestionController {
 	 */
 	@CrossOrigin
 	@PostMapping("/groups/{id}/answers")
-	public ResponseEntity<Answer> create(@RequestBody Answer newans, @PathVariable("id") Long id) 
+	public ResponseEntity<Answer> create(@PathVariable("id") Long id, @RequestBody Answer newans) 
 		    throws URISyntaxException {
 		Optional<Questiongroup> desiredQg = grep.findById(id);
 		Questiongroup qg = desiredQg.get();
