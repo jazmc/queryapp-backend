@@ -11,6 +11,7 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Questiongroup {
@@ -25,7 +26,7 @@ public class Questiongroup {
 	
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "questiongroup")
-	@JsonBackReference
+	@JsonManagedReference
 	private List<Answer> answers;
 
 	// constructors
