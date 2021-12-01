@@ -50,7 +50,7 @@ public class QuestionController {
 	@PostMapping("/groups/{id}/answers")
 	@ResponseBody
 	public Answer create(@PathVariable("id") Long id, @RequestBody Answer newans) {
-		System.out.println("POST-PYYNTÖ VASTAANOTETTU");
+		System.out.println("POST-PYYNTÖ VASTAANOTETTU " + newans.toString());
 		return newans;
 		//Optional<Questiongroup> desiredQg = grep.findById(id);
 		//Questiongroup qg = desiredQg.get();
