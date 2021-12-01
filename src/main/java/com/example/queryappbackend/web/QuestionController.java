@@ -48,6 +48,7 @@ public class QuestionController {
 	 */
 	@CrossOrigin
 	@PostMapping("/groups/{id}/answers")
+	@ResponseBody
 	public Answer create(@PathVariable("id") Long id, @RequestBody Answer newans) {
 		Optional<Questiongroup> desiredQg = grep.findById(id);
 		Questiongroup qg = desiredQg.get();
