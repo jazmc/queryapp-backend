@@ -1,6 +1,7 @@
 package com.example.queryappbackend.web;
 
 import java.net.URISyntaxException;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,10 +50,11 @@ public class QuestionController {
 	@CrossOrigin
 	@PostMapping("/groups/{id}/answers")
 	@ResponseBody
-	public Answer create(@PathVariable("id") Long id, @RequestBody Answer newans) {
+	public Answer create(@PathVariable("id") Long id, @RequestBody Answer newans) { 
 		Optional<Questiongroup> desiredQg = grep.findById(id);
 		Questiongroup qg = desiredQg.get();
 		newans.setQuestiongroup(qg);
+		newans.setTimestamp(LocalDateTime.now());
 		
 		return arep.save(newans);
 	}
