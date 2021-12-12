@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+	<title>Queryapp maintainer tools</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+	<h1>Queryapp maintainer tools</h1>
+	
+	<div sec:authorize="isAuthenticated()">
+		<h3 th:inline="text">Signed in as [[${#httpServletRequest.remoteUser}]]</h3>
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" value="Log Out" class="btn btn-sm "/>
+		</form>
+	</div>
+	
+	<table class="table table-striped">
+		<tr>
+			<th>Questionnaire</th>
+		</tr>
+		<tr th:each="group : ${groups}">
+			<td>
+				<a th:href="@{/admin/questionnaires/{id}(id=${group.qgroupid})}" th:text="${group.title}">questionnaire</a>
+			</td>
+		</tr>
+	</table>
+	
+	<form th:action="@{/admin/questionnaires/new}" method="post">
+			<input type="submit" value="Create New Questionnaire" class="btn btn-success "/>
+		</form>
+	
+	
+</body>
+</html>

@@ -25,15 +25,15 @@ public class Answer {
 	@ManyToOne
 	@JoinColumn(name = "qgroupid")
 	@JsonBackReference
-	private Questiongroup questiongroup;
+	private QuestionGroup questionGroup;
 	
 	public Answer() {}
 	
-	public Answer(String nickname, String answers, Questiongroup questiongroup) {
+	public Answer(String nickname, String answers, QuestionGroup questiongroup) {
 		super();
 		this.nickname = nickname;
 		this.answers = answers;
-		this.questiongroup = questiongroup;
+		this.questionGroup = questiongroup;
 		this.timestamp = LocalDateTime.now();
 	}
 	
@@ -41,7 +41,7 @@ public class Answer {
 		super();
 		this.nickname = nickname;
 		this.answers = answers;
-		this.questiongroup = null;
+		this.questionGroup = null;
 		this.timestamp = LocalDateTime.now();
 	}
 
@@ -77,11 +77,11 @@ public class Answer {
 		this.answers = answers;
 	}
 
-	public Questiongroup getQuestiongroup() {
-		return questiongroup;
+	public QuestionGroup getQuestiongroup() {
+		return questionGroup;
 	}
 
-	public void setQuestiongroup(Questiongroup questiongroup) {
-		this.questiongroup = questiongroup;
+	public void setQuestiongroup(QuestionGroup questiongroup) {
+		this.questionGroup = questiongroup;
 	}
 }

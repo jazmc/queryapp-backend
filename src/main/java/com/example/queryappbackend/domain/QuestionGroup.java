@@ -14,25 +14,25 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
-public class Questiongroup {
+public class QuestionGroup {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long qgroupid;
 	private String title;
 	
 	@JsonIgnore
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "questiongroup")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "questionGroup")
 	private List<Question> questions;
 	
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "questiongroup")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "questionGroup")
 	@JsonManagedReference
 	private List<Answer> answers;
 
 	// constructors
-	public Questiongroup() {}
+	public QuestionGroup() {}
 	
-	public Questiongroup(String title) {
+	public QuestionGroup(String title) {
 		super();
 		this.title = title;
 	}

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+	<title>Queryapp maintainer tools</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+	<h1>Queryapp maintainer tools</h1>
+	
+	<div sec:authorize="isAuthenticated()">
+		<h3 th:inline="text">Signed in as [[${#httpServletRequest.remoteUser}]]</h3>
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" value="Log Out" class="btn btn-sm "/>
+		</form>
+	</div>
+	<a class="btn btn-primary " th:href="@{/admin/questionnaires/{gid}(gid=${qgroupid})}">Back to questionnaire</a>
+	<h2>Edit Question</h2>
+	
+	<div th:if="${param.u != null}">
+	  	<h4>Updated description and type</h4>
+	</div>
+	<div th:if="${param.a != null}">
+	  	<h4>Added a new answer</h4>
+	</div>
+	<div th:if="${param.e != null}">
+	  	<h4>Updated an answer</h4>
+	</div>
+	<div th:if="${param.d != null}">
+	  	<h4>Deleted an answer</h4>
+	</div>
+	
+	<form 	action="#"
+			th:action="@{/admin/questionnaires/{gid}/{qid}(gid=${qgroupid}, qid=${qid})}"
+			method="post">
+		<table class="table table-striped">
+			<tr>
+				<th>Description</th>
+				<th>Type</th>
+			</tr>
+			<tr>
+				<td><input type="text" size="100" th:field="${question.description}" /></td>
+				<td><input type="text" th:field="${question.type}" /></td>
+			</tr>
+		</table>
+		
+		<input class="btn btn-success" type="submit" value="Update Description and Type" />
+	</form>
+	
+	<h2>Edit Answers</h2>
+	
+	
+	
+	<form 	action="#"
+			th:action="@{/admin/questionnaires/{gid}/{qid}/answers/add(gid=${qgroupid}, qid=${qid})}"
+			method="post">
+		<input class="btn btn-primary" type="submit" value="Add new answer" />
+	</form>
+	
+	
+	<table class="table table-striped">
+		<tr th:each=" answer, i : ${question.answers}">
+			<form 	action="#"
+					th:action="@{/admin/questionnaires/{gid}/{qid}/answers/edit/{index}
+						(gid=${qgroupid}, qid=${question.id}, index=${i.index})}"
+					method="post">
+				
+				<td>
+					<input type="text" size="100" name="answer" th:value="${answer}" />
+					<input class="btn btn-success" type="submit" value="Update" />
+				</td>
+				<td>
+					<a	class="btn btn-danger" 
+						th:href="@{/admin/questionnaires/{gid}/{qid}/answers/delete/{index}
+						(gid=${qgroupid}, qid=${question.id}, index=${i.index})}">
+						Delete
+					</a> 
+				</td>
+			</form>
+		</tr>
+	</table>
+	
+</body>
+</html>

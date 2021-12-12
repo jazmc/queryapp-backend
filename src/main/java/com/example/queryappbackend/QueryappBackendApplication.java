@@ -5,8 +5,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import com.example.queryappbackend.domain.Questiongroup;
-import com.example.queryappbackend.domain.QuestiongroupRepository;
+import com.example.queryappbackend.domain.QuestionGroup;
+import com.example.queryappbackend.domain.QuestionGroupRepository;
+import com.example.queryappbackend.domain.MaintainerUser;
+import com.example.queryappbackend.domain.MaintainerUserRepository;
 import com.example.queryappbackend.domain.Question;
 import com.example.queryappbackend.domain.QuestionRepository;
 
@@ -18,11 +20,21 @@ public class QueryappBackendApplication {
 	}
 	
 	@Bean
-	public CommandLineRunner demo(QuestionRepository repository, QuestiongroupRepository grep) {
+	public CommandLineRunner demo(	QuestionRepository repository, 
+									QuestionGroupRepository grep,
+									MaintainerUserRepository mUserRepository) {
 		return (args) -> {
+			
+			//Usernames are UNIQUE, so you must deleteAll in Heroku. For example urepository.deleteAll() in your CommandLineRunner.
+			mUserRepository.deleteAll();
+			
+			//username: admin, password: admin
+			MaintainerUser user1 = new MaintainerUser("admin", "$2a$10$SUx2Q1/z5Kfn60CdIw5.ouj4o.z1dvS2TRXL4z/uhTFq8BWXPUiBe", "USER");
+			mUserRepository.save(user1);
+			
 			// create example questionnaires
-			Questiongroup g1 = new Questiongroup("Group 1 title");
-			Questiongroup g2 = new Questiongroup("Group 2 title");
+			QuestionGroup g1 = new QuestionGroup("Test Questionnaire 1");
+			QuestionGroup g2 = new QuestionGroup("Another test questionnaire");
 			
 			grep.save(g1);
 			grep.save(g2);

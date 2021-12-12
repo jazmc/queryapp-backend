@@ -25,17 +25,17 @@ public class Question {
 	@ManyToOne
 	@JoinColumn(name = "qgroupid")
 	@JsonBackReference
-	private Questiongroup questiongroup;
+	private QuestionGroup questionGroup;
 
 	// constructors
 	public Question() {}
 	
-	public Question(String description, String type, String[] answers, Questiongroup questiongroup) {
+	public Question(String description, String type, String[] answers, QuestionGroup questiongroup) {
 		super();
 		this.description = description;
 		this.type = type;
 		this.answers = answers;
-		this.questiongroup = questiongroup;
+		this.questionGroup = questiongroup;
 	}
 	
 	// getters & setters below
@@ -64,12 +64,12 @@ public class Question {
 		this.type = type;
 	}
 
-	public Questiongroup getGroup() {
-		return questiongroup;
+	public QuestionGroup getGroup() {
+		return questionGroup;
 	}
 
-	public void setGroup(Questiongroup questiongroup) {
-		this.questiongroup = questiongroup;
+	public void setGroup(QuestionGroup questiongroup) {
+		this.questionGroup = questiongroup;
 	}
 
 	public String[] getAnswers() {
