@@ -104,9 +104,8 @@ public class QuestionController {
 	@CrossOrigin
 	@GetMapping("/groups/{id}/answers")
 	public @ResponseBody List<Answer> findAnswersOfAGroupREST(@PathVariable("id") Long id) {
-		Optional<QuestionGroup> qg = groupRepository.findById(id);
-		QuestionGroup group = qg.get();
-		return (List<Answer>) group.getAnswers();
+		
+		return (List<Answer>) answerRepository.findByQuestionGroupQgroupid(id);
 	}
 	
 	

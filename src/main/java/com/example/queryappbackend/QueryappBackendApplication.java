@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Bean;
 
 import com.example.queryappbackend.domain.QuestionGroup;
 import com.example.queryappbackend.domain.QuestionGroupRepository;
+import com.example.queryappbackend.domain.Answer;
+import com.example.queryappbackend.domain.AnswerRepository;
 import com.example.queryappbackend.domain.MaintainerUser;
 import com.example.queryappbackend.domain.MaintainerUserRepository;
 import com.example.queryappbackend.domain.Question;
@@ -22,7 +24,8 @@ public class QueryappBackendApplication {
 	@Bean
 	public CommandLineRunner demo(	QuestionRepository repository, 
 									QuestionGroupRepository grep,
-									MaintainerUserRepository mUserRepository) {
+									MaintainerUserRepository mUserRepository,
+									AnswerRepository aRep) {
 		return (args) -> {
 			
 			//Usernames are UNIQUE, so you must deleteAll in Heroku. For example urepository.deleteAll() in your CommandLineRunner.
@@ -52,6 +55,9 @@ public class QueryappBackendApplication {
 			repository.save(q2);
 			repository.save(q3);
 			repository.save(q4);
+			
+			Answer a1 = new Answer("testaaja", "[2, 3, 'moi']", g2);
+			aRep.save(a1);
 		};
 	}
 

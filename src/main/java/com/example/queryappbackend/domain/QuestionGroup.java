@@ -20,14 +20,13 @@ public class QuestionGroup {
 	private Long qgroupid;
 	private String title;
 	
-	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "questionGroup")
+	@JsonIgnore
 	private List<Question> questions;
 	
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "questionGroup")
 	@JsonIgnore
-	@JsonManagedReference
 	private List<Answer> answers;
 
 	// constructors
