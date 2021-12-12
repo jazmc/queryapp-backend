@@ -26,6 +26,7 @@ public class QuestionGroup {
 	
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "questionGroup")
+	@JsonIgnore
 	@JsonManagedReference
 	private List<Answer> answers;
 
