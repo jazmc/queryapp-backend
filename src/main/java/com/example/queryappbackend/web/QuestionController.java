@@ -21,6 +21,7 @@ import com.example.queryappbackend.domain.Answer;
 import com.example.queryappbackend.domain.AnswerRepository;
 import com.example.queryappbackend.domain.Question;
 import com.example.queryappbackend.domain.QuestionRepository;
+import com.fasterxml.jackson.databind.JsonNode;
 
 @RestController
 public class QuestionController {
@@ -49,9 +50,9 @@ public class QuestionController {
 	@CrossOrigin
 	@PostMapping("/groups/{id}/answers")
 	@ResponseBody
-	public Answer create(@PathVariable("id") Long id, @RequestBody Answer newans) { 
+	public Answer create(@PathVariable("id") Long id, @RequestBody JsonNode newans) { 
 		System.out.println("POSTATTU QUESTIONNAIREEN: " + id);
-		System.out.println("ANSWERS: " + newans);
+		System.out.println("ANSWER: " + newans);
 		Optional<QuestionGroup> desiredQg = groupRepository.findById(id);
 		QuestionGroup qg = desiredQg.get();
 		newans.setQuestiongroup(qg);
