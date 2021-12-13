@@ -50,7 +50,7 @@ public class QuestionController {
 	@CrossOrigin
 	@PostMapping("/groups/{id}/answers")
 	@ResponseBody
-	public Answer create(@PathVariable("id") Long id, @RequestBody JsonNode newans) { 
+	public Answer create(@PathVariable("id") Long id, @RequestBody Answer newans) { 
 		System.out.println("POSTATTU QUESTIONNAIREEN: " + id);
 		System.out.println("ANSWER: " + newans);
 		Optional<QuestionGroup> desiredQg = groupRepository.findById(id);
